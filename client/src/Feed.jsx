@@ -9,33 +9,34 @@ import Paper from '@material-ui/core/Paper';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardMedia from '@material-ui/core/CardMedia';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
+    cardRoot: {
+        flexGrow: 1
+    },
     card: {
-      minWidth: 275,
+        maxWidth: 345,
+        margin: 12,
+        padding: theme.spacing(2)
+      },
+    media: {
+        height: 140,
     },
-    bullet: {
-      display: 'inline-block',
-      margin: '0 2px',
-      transform: 'scale(0.8)',
-    },
-    title: {
-      fontSize: 14,
-    },
-    pos: {
-      marginBottom: 12,
-    },
-  });
+  }));
 
-export default function Feed(props) {
+export default function Feed() {
 
-    const classes = useStyles();
-    const bull = <span className={classes.bullet}>•</span>;
-    
-    // add hooks
+    //todo add hooks
+    const classes = useStyles();    
     const [status, setStatus] = useState();
     
+    //todo add variables
     var content;
+
+    //todo add functions
+
     function getAllStatus(e) {
         e.preventDefault();
         axios.get('/allStatus').then((response) => {
@@ -50,9 +51,34 @@ export default function Feed(props) {
     } else {
         content = status.map((status, id) => {
             return(
-                <div>
-
-                    <Button variant='contained' key={id}>{status.text}</Button>
+                <div className={classes.cardRoot}>
+                    <Card className={classes.card}>
+                        <CardActionArea>
+                            <CardMedia
+                                className={classes.media}
+                                image="#"
+                                title="Contemplative Reptile"
+                            />
+                            <CardContent>
+                            <Typography 
+                                gutterBottom
+                                variant="h5"
+                                component="h2">{status.text}</Typography>
+                            <Typography 
+                                variant="body2"
+                                color="textSecondary"
+                                component="p">Time Posted: {status.time}</Typography>
+                            </CardContent>
+                        </CardActionArea>
+                        <CardActions>
+                            <Button size="small" color="primary">
+                            Share
+                            </Button>
+                            <Button size="small" color="primary">
+                            Learn More
+                            </Button>
+                        </CardActions>
+                    </Card>
                 </div>
             )
         })

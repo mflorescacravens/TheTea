@@ -61,6 +61,7 @@ app.post('/status', (req,res) => {
         text: req.body.text,
         like: req.body.like,
         emotion: req.body.emotion,
+        time: new Date()
     }, function(err, status) {
         res.json(status)
     })

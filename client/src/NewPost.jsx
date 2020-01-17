@@ -8,7 +8,7 @@ import axios from 'axios';
 
 
 export default function NewPost() {
-    // add hooks
+    //todo add hooks
     const useStyles = makeStyles(theme => ({
         box: {
             margin: theme.spacing(4),
@@ -24,6 +24,7 @@ export default function NewPost() {
     }));
     const classes = useStyles();
     const [newComment, setNewComment] = useState('');
+    const time = new Date()
 
     function updateComment() {
         setNewComment(document.getElementById('outlined-multiline-static').value);
@@ -32,8 +33,10 @@ export default function NewPost() {
     function submitComment(e) {
         e.preventDefault()
         axios.post('status', {
-            text: newComment
+            text: newComment,
+            time: time
         })
+        console.log(time)
     }
 
 
