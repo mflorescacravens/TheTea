@@ -24,13 +24,16 @@ export default function NewPost() {
     }));
     const classes = useStyles();
     const [newComment, setNewComment] = useState('');
+
+    function updateComment() {
+        setNewComment(document.getElementById('outlined-multiline-static').value);
+    }
     
     function submitComment(e) {
         e.preventDefault()
-        var newComTex = document.getElementById('outlined-multiline-static').value;
-        setNewComment(newComTex);
-        axios.post(newComment)
-        console.log(newComTex)
+        axios.post('status', {
+            text: newComment
+        })
     }
 
 
@@ -46,6 +49,7 @@ export default function NewPost() {
                     placeholder="What's on your mind, friend?"
                     variant="filled"
                     name='comment'
+                    onChange={updateComment}
                     />
                 <Button type='submit' variant='contained' color='secondary'>Submit</Button>
             </form>

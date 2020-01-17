@@ -61,7 +61,7 @@ export default function Feed(props) {
 
     return(
         <div>
-            <button onClick={getAllStatus}>get status'</button>
+            <Button variant='contained' color='primary' onClick={getAllStatus}>See your feed by clicking here!</Button>
             {content}
         </div>
     )
