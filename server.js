@@ -56,13 +56,15 @@ app.get('/allStatus', function(req, res) {
 
 //! POST status
 
-app.post('/status', (req,res) => {
+app.post('/status', function(req, res) {
+    var curDate = new Date().toString();
     Status.create({
         text: req.body.text,
         like: req.body.like,
         emotion: req.body.emotion,
-        time: new Date()
+        date: curDate
     }, function(err, status) {
+        if (err) res.json(err)
         res.json(status)
     })
 })
