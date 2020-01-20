@@ -35,10 +35,9 @@ export default function NewPost() {
 
     }));
     const classes = useStyles();
-    const [newComment, setNewComment] = useState('');
-    const [age, setAge] = useState('');
-
-    const time = new Date()
+    const [newComment, setNewComment] = React.useState('');
+    const [emotion, setEmotion] = React.useState('');
+    const [picture, setPicture] = React.useState();
 
     function updateComment() {
         setNewComment(document.getElementById('outlined-multiline-static').value);
@@ -48,14 +47,20 @@ export default function NewPost() {
         e.preventDefault()
         axios.post('status', {
             text: newComment,
-            time: time
+            emotion: emotion,
+            picture: picture,
         })
-        console.log(time)
+        console.log(newComment, emotion, picture)
     }
-    function handleChange(e) {
+
+    function handleEmotionChange(e) {
         e.preventDefault();
-        setAge(document.getElementById('select').value)
+        setEmotion(e.target.value);
     };
+
+    function handlePhotoUpload(e) {
+        setPicture(e.target.value)
+    }
 
 
     return(
@@ -76,16 +81,17 @@ export default function NewPost() {
                     <Button type='submit' variant='contained' color='secondary'>Submit</Button>
                 </form>
                 <FormControl className={classes.formControl}>
-                    <Select value={age} onChange={handleChange} displayEmpty className={classes.selectEmpty}>
+                    <Select value={emotion} onChange={handleEmotionChange} displayEmpty className={classes.selectEmpty}>
                     <MenuItem value="">
                         <em>None</em>
                     </MenuItem>
-                    <MenuItem value={10}>Ten</MenuItem>
-                    <MenuItem value={20}>Twenty</MenuItem>
-                    <MenuItem value={30}>Thirty</MenuItem>
+                    <MenuItem value='Happy 😊'>Happy 😊</MenuItem>
+                    <MenuItem value='Sad 😢'>Sad 😢</MenuItem>
+                    <MenuItem value='Smart 🤓'>Smart 🤓</MenuItem>
                     </Select>
-                    <FormHelperText>Without label</FormHelperText>
+                    <FormHelperText>Pick an emoji!</FormHelperText>
                 </FormControl>
+                <Button type="file" name="pic" accept="image/*" onChange={handlePhotoUpload} />
             </Paper>
         </div>
     )

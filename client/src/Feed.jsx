@@ -67,7 +67,7 @@ export default function Feed() {
                             <Typography 
                                 variant="body2"
                                 color="textSecondary"
-                                component="p">Time Posted: {status.time}</Typography>
+                                component="p">Time Posted: {status.date}</Typography>
                             </CardContent>
                         </CardActionArea>
                         <CardActions>

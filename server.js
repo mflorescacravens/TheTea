@@ -6,6 +6,7 @@ const helmet = require('helmet');
 const RateLimit = require('express-rate-limit');
 const Status = require('./models/Status');
 const User = require('./models/User');
+var moment = require('moment');
 
 
 const app = express();
@@ -57,10 +58,10 @@ app.get('/allStatus', function(req, res) {
 //! POST status
 
 app.post('/status', function(req, res) {
-    var curDate = new Date().toString();
+    var curDate = moment().format('MMMM Do YYYY, h:mm:ss a');
     Status.create({
         text: req.body.text,
-        like: req.body.like,
+        picture: req.body.picture,
         emotion: req.body.emotion,
         date: curDate
     }, function(err, status) {
