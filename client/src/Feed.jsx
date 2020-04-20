@@ -11,6 +11,7 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardMedia from '@material-ui/core/CardMedia';
+import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 
 const useStyles = makeStyles(theme => ({
     cardRoot: {
@@ -20,11 +21,19 @@ const useStyles = makeStyles(theme => ({
         maxWidth: 345,
         margin: 12,
         padding: theme.spacing(2)
-      },
+    },
     media: {
         height: 140,
     },
-  }));
+    feedBox: {
+        // backgroundColor: 'blue',
+        justifyContent: 'center',
+        margin: '0 auto',
+        display: 'block',
+        alignContent: 'center',
+
+    }
+}));
 
 export default function Feed() {
 
@@ -37,14 +46,31 @@ export default function Feed() {
 
     //todo add functions
 
-    function getAllStatus(e) {
-        e.preventDefault();
+    // useEffect(() => {
+    //     axios.get('/allStatus').then((response) => {
+    //         setStatus(response.data)
+    //     }).catch((err) => {
+    //         console.log(err)
+    //     })
+    // }, [])
+
+    function getAllStatus() {
         axios.get('/allStatus').then((response) => {
             setStatus(response.data)
         }).catch((err) => {
             console.log(err)
         })
     }
+
+    useEffect(() => {
+        axios.get('/allStatus').then((response) => {
+            console.log('re-render')
+            setStatus(response.data)
+        }).catch((err) => {
+            console.log(err)
+        })
+    }, [])
+
 
     if (!status) {
         content = <p>no stuff to render'</p>
@@ -84,11 +110,10 @@ export default function Feed() {
         })
     }
 
-
     return(
-        <div>
-            <Button variant='contained' color='primary' onClick={getAllStatus}>See your feed by clicking here!</Button>
+        <div className={classes.feedBox}>
             {content}
+            <Button variant='contained' color='secondary' onClick={getAllStatus}>Refresh Feed/Show More<ArrowDownwardIcon /></Button>
         </div>
     )
 }

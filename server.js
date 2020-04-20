@@ -6,7 +6,7 @@ const helmet = require('helmet');
 const RateLimit = require('express-rate-limit');
 const Status = require('./models/Status');
 const User = require('./models/User');
-var moment = require('moment');
+const moment = require('moment');
 
 
 const app = express();

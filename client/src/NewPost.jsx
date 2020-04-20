@@ -23,7 +23,8 @@ export default function NewPost() {
         },
         paper: {
             padding: theme.spacing(2),
-            margin: theme.spacing(2)
+            margin: theme.spacing(2),
+            backgroundColor: 'rgb(26, 40, 75)',
         },
         formControl: {
             margin: theme.spacing(1),
@@ -50,7 +51,7 @@ export default function NewPost() {
             emotion: emotion,
             picture: picture,
         })
-        console.log(newComment, emotion, picture)
+        document.getElementById('outlined-multiline-static').value = '';
     }
 
     function handleEmotionChange(e) {
@@ -82,14 +83,14 @@ export default function NewPost() {
                 </form>
                 <FormControl className={classes.formControl}>
                     <Select value={emotion} onChange={handleEmotionChange} displayEmpty className={classes.selectEmpty}>
-                    <MenuItem value="">
-                        <em>None</em>
-                    </MenuItem>
-                    <MenuItem value='Happy 😊'>Happy 😊</MenuItem>
-                    <MenuItem value='Sad 😢'>Sad 😢</MenuItem>
-                    <MenuItem value='Smart 🤓'>Smart 🤓</MenuItem>
+                        <MenuItem value="">
+                            <em>None</em>
+                        </MenuItem>
+                        <MenuItem value='Happy 😊'>Happy 😊</MenuItem>
+                        <MenuItem value='Sad 😢'>Sad 😢</MenuItem>
+                        <MenuItem value='Smart 🤓'>Smart 🤓</MenuItem>
                     </Select>
-                    <FormHelperText>Pick an emoji!</FormHelperText>
+                    <FormHelperText>Pick an emotion!</FormHelperText>
                 </FormControl>
                 <Button type="file" name="pic" accept="image/*" onChange={handlePhotoUpload} />
             </Paper>

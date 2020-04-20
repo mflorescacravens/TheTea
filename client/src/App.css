@@ -3,7 +3,7 @@
   /* background-color: purple; */
 }
 body {
-  background-color: crimson;
+  background-color: rgb(26, 21, 71);
 }
 .userInputField::placeholder {
   color: white;
