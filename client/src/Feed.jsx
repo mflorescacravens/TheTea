@@ -15,7 +15,13 @@ import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 
 const useStyles = makeStyles(theme => ({
     cardRoot: {
-        flexGrow: 1
+        flexGrow: 1,
+        // margin: '0 auto',
+        display: 'flex',
+        // flexDirection: 'row-reverse'
+        // justifyContent: 'center',
+        // alignContent: 'center',
+
     },
     card: {
         maxWidth: 345,
@@ -27,11 +33,15 @@ const useStyles = makeStyles(theme => ({
     },
     feedBox: {
         // backgroundColor: 'blue',
-        justifyContent: 'center',
+        flexGrow: 1,
+        // justifyContent: 'center',
         margin: '0 auto',
-        display: 'block',
-        alignContent: 'center',
-
+        display: 'flex',
+        flexDirection: 'column'
+        // alignContent: 'center',
+    },
+    refreshButton: {
+        // display: 'inline-block'
     }
 }));
 
@@ -97,12 +107,12 @@ export default function Feed() {
                             </CardContent>
                         </CardActionArea>
                         <CardActions>
-                            <Button size="small" color="primary">
+                            {/* <Button size="small" color="primary">
                             Share
                             </Button>
                             <Button size="small" color="primary">
                             Learn More
-                            </Button>
+                            </Button> */}
                         </CardActions>
                     </Card>
                 </div>
@@ -113,7 +123,7 @@ export default function Feed() {
     return(
         <div className={classes.feedBox}>
             {content}
-            <Button variant='contained' color='secondary' onClick={getAllStatus}>Refresh Feed/Show More<ArrowDownwardIcon /></Button>
+            <Button className={classes.refreshButton} variant='contained' color='secondary' onClick={getAllStatus}>Refresh Feed/Show More<ArrowDownwardIcon /></Button>
         </div>
     )
 }
