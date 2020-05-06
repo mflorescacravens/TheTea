@@ -35,9 +35,11 @@ export default function NavBar() {
                 <Typography variant="h6" className={classes.title}>
                 The Tea
                 </Typography>
-                <Button color="inherit" variant='outlined' className={classes.barButtons}>Profile</Button>
-                <Button color="inherit" variant='outlined' className={classes.barButtons}>Login</Button>
-                <Button color="inherit" variant='outlined' className={classes.barButtons}>Settings</Button>
+                {/* <Switch> */}
+                  <Button color="inherit" variant='outlined' className={classes.barButtons}>Profile</Button>
+                  <Button color="inherit" variant='outlined' className={classes.barButtons}>Login</Button>
+                  <Button color="inherit" variant='outlined' className={classes.barButtons}>Settings</Button>
+                {/* </Switch> */}
             </Toolbar>
         </AppBar>
     )
