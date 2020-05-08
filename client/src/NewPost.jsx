@@ -24,7 +24,7 @@ export default function NewPost() {
         paper: {
             padding: theme.spacing(2),
             margin: theme.spacing(2),
-            backgroundColor: 'rgb(26, 40, 75)',
+            // backgroundColor: 'rgb(26, 40, 75)',
         },
         formControl: {
             margin: theme.spacing(1),

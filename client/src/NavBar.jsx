@@ -39,9 +39,9 @@ export default function NavBar() {
         <Link to="/">
           <Button>Home</Button>
         </Link>
-        {/* <Link to="/profile">
+        <Link to="/profile">
           <Button color="inherit" variant='outlined' className={classes.barButtons}>Profile</Button>
-        </Link> */}
+        </Link>
         {/* <Link to="/login">
           <Button color="inherit" variant='outlined' className={classes.barButtons}>Login</Button>
         </Link> */}

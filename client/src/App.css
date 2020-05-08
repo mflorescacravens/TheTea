@@ -4,7 +4,8 @@
   /* display: flex; */
 }
 body {
-  background-color: rgb(26, 21, 71);
+  /* background-color: rgb(26, 21, 71); */
+  background-color: white;
 }
 .userInputField::placeholder {
   color: white;
