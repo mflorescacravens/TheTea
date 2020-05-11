@@ -7,9 +7,6 @@ import Profile from './Profile';
 import Settings from './Settings';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-
-
-
 export default function App() {
 
   return (

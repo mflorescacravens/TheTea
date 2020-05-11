@@ -85,7 +85,6 @@ export default function Feed() {
 
     useEffect(() => {
         axios.get('/allStatus').then((response) => {
-            console.log(response.data)
             setStatus(shuffleArr(response.data))
         }).catch((err) => {
             console.log(err)
@@ -134,7 +133,7 @@ export default function Feed() {
     return(
         <div className={classes.feedBox}>
             {content}
-            <Button className={classes.refreshButton} variant='contained' color='secondary' onClick={getAllStatus}>Refresh Feed/Show More<ArrowDownwardIcon /></Button>
+            {/* <Button className={classes.refreshButton} variant='contained' color='secondary' onClick={getAllStatus}>Refresh Feed/Show More<ArrowDownwardIcon /></Button> */}
         </div>
     )
 }
