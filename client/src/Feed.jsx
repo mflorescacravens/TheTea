@@ -32,17 +32,12 @@ const useStyles = makeStyles(theme => ({
         height: 140,
     },
     feedBox: {
-        // backgroundColor: 'blue',
-        flexGrow: 1,
-        // justifyContent: 'center',
         margin: '0 auto',
         display: 'flex',
-        flexDirection: 'column'
-        // alignContent: 'center',
+        flexDirection: 'column',
+        alignItems: 'center',
+        marginTop: theme.spacing(4)
     },
-    refreshButton: {
-        // display: 'inline-block'
-    }
 }));
 
 export default function Feed() {
