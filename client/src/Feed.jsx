@@ -16,12 +16,7 @@ import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 const useStyles = makeStyles(theme => ({
     cardRoot: {
         flexGrow: 1,
-        // margin: '0 auto',
         display: 'flex',
-        // flexDirection: 'row-reverse'
-        // justifyContent: 'center',
-        // alignContent: 'center',
-
     },
     card: {
         maxWidth: 345,
@@ -42,30 +37,10 @@ const useStyles = makeStyles(theme => ({
 
 export default function Feed() {
 
-    //todo add hooks
     const classes = useStyles();    
     const [status, setStatus] = useState();
     
-    //todo add variables
     var content;
-
-    //todo add functions
-
-    // useEffect(() => {
-    //     axios.get('/allStatus').then((response) => {
-    //         setStatus(response.data)
-    //     }).catch((err) => {
-    //         console.log(err)
-    //     })
-    // }, [])
-
-    function getAllStatus() {
-        axios.get('/allStatus').then((response) => {
-            setStatus(response.data)
-        }).catch((err) => {
-            console.log(err)
-        })
-    }
 
     function shuffleArr(arr) {
         var j, x, i;
@@ -88,7 +63,7 @@ export default function Feed() {
 
 
     if (!status) {
-        content = <p>no stuff to render'</p>
+        content = <p>hi</p>
     } else {
         content = status.map((status, id) => {
             return(
@@ -98,7 +73,7 @@ export default function Feed() {
                             <CardMedia
                                 className={classes.media}
                                 image="#"
-                                title="Contemplative Reptile"
+                                title="Picture"
                             />
                             <CardContent>
                             <Typography 
@@ -111,14 +86,14 @@ export default function Feed() {
                                 component="p">Time Posted: {status.date}</Typography>
                             </CardContent>
                         </CardActionArea>
-                        <CardActions>
-                            {/* <Button size="small" color="primary">
+                        {/* <CardActions>
+                            <Button size="small" color="primary">
                             Share
                             </Button>
                             <Button size="small" color="primary">
                             Learn More
-                            </Button> */}
-                        </CardActions>
+                            </Button>
+                        </CardActions> */}
                     </Card>
                 </div>
             )
@@ -128,7 +103,6 @@ export default function Feed() {
     return(
         <div className={classes.feedBox}>
             {content}
-            {/* <Button className={classes.refreshButton} variant='contained' color='secondary' onClick={getAllStatus}>Refresh Feed/Show More<ArrowDownwardIcon /></Button> */}
         </div>
     )
 }
