@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import './App.css';
+import axios from 'axios';
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
@@ -12,7 +13,9 @@ import Popper from '@material-ui/core/Popper';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
 import { makeStyles } from '@material-ui/core/styles';
-import { Link } from 'react-router-dom'; 
+import { Link } from 'react-router-dom';
+require('dotenv').config();
+
 
 
 const useStyles = makeStyles(theme => ({
@@ -63,6 +66,16 @@ export default function NavBar() {
     prevOpen.current = open;
   }, [open]);
 
+  // const weatherCall = () => {
+  //   const key = process.env.API_Key;
+  //   axios.get("https://api.climacell.co/v3/weather/realtime?lat=47.6062&lon=122.3321&unit_system=si&fields=&apikey=" + key).then(res => {
+  //     console.log(res, 'hi')
+  //   })
+  // }
+
+  // useEffect(() => {
+  //   weatherCall();
+  // }, [])
 
 
   return(
@@ -107,7 +120,7 @@ export default function NavBar() {
           </Popper>
         </IconButton>
         <Typography variant="h6" className={classes.title}>
-        The Tea
+        <Link to='/' className="links home">The Tea</Link>
         </Typography>
       </Toolbar>
     </AppBar>

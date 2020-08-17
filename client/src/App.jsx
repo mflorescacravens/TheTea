@@ -11,13 +11,18 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 export default function App() {
   const [test, setTest] = useState('hi')
 
+  function setValue(newValue) {
+    console.log(newValue)
+    setTest(newValue)
+  }
+
   return (
     <div className="App">
       <Router>
         <NavBar />
         <Switch>
           <Route path="/" exact component={Feed} />
-          <Route path="/profile" render={() => <Profile test={test} />} />
+          <Route path="/profile" render={() => <Profile test={test} setValue={setValue} />} />
           <Route path="/newPost" exact component={NewPost} />
           <Route path="/settings" exact component={Settings} />
           <Route path="/logout" exact component={Logout} />
