@@ -14,7 +14,8 @@ import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
-require('dotenv').config();
+
+const dotenv = require('dotenv');
 
 
 
@@ -66,16 +67,45 @@ export default function NavBar() {
     prevOpen.current = open;
   }, [open]);
 
-  // const weatherCall = () => {
-  //   const key = process.env.API_Key;
-  //   axios.get("https://api.climacell.co/v3/weather/realtime?lat=47.6062&lon=122.3321&unit_system=si&fields=&apikey=" + key).then(res => {
-  //     console.log(res, 'hi')
-  //   })
-  // }
 
-  // useEffect(() => {
-  //   weatherCall();
-  // }, [])
+  // module.exports = () => {
+  //   // call dotenv and it will return an Object with a parsed key 
+  //   const env = dotenv.config().parsed;
+    
+  //   // reduce it to a nice object, the same as before
+  //   const envKeys = Object.keys(env).reduce((prev, next) => {
+  //     prev[`process.env.${next}`] = JSON.stringify(env[next]);
+  //     return prev;
+  //   }, {});
+
+  //   return {
+  //     plugins: [
+  //       new webpack.DefinePlugin(envKeys)
+  //     ]
+  //   };
+  // };
+
+  const weatherCall = () => {
+    const data = null;
+
+    const xhr = new XMLHttpRequest();
+
+    xhr.addEventListener("readystatechange", function () {
+      if (this.readyState === this.DONE) {
+        console.log(this.responseText);
+      }
+    });
+
+    xhr.open("GET", "https://api.climacell.co/v3/weather/realtime?lat=47.6062&lon=122.3321&unit_system=us&fields=precipitation%2Ctemp&apikey=wN4M0LPmrrziv0gjarHmdX1kNUgV8VKB");
+
+    xhr.send(data);
+    console.log(data)
+
+  }
+
+  useEffect(() => {
+    weatherCall();
+  }, [])
 
 
   return(
