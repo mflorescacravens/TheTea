@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import './App.css';
-import axios from 'axios';
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
@@ -14,10 +13,6 @@ import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
-
-const dotenv = require('dotenv');
-
-
 
 const useStyles = makeStyles(theme => ({
     appBarRoot: {
@@ -38,6 +33,9 @@ export default function NavBar() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
+  const [weather, setWeather] = useState(false);
+
+  var weatherMapped = 'nothing yet...';
   
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
@@ -67,23 +65,8 @@ export default function NavBar() {
     prevOpen.current = open;
   }, [open]);
 
+  var date;
 
-  // module.exports = () => {
-  //   // call dotenv and it will return an Object with a parsed key 
-  //   const env = dotenv.config().parsed;
-    
-  //   // reduce it to a nice object, the same as before
-  //   const envKeys = Object.keys(env).reduce((prev, next) => {
-  //     prev[`process.env.${next}`] = JSON.stringify(env[next]);
-  //     return prev;
-  //   }, {});
-
-  //   return {
-  //     plugins: [
-  //       new webpack.DefinePlugin(envKeys)
-  //     ]
-  //   };
-  // };
 
   const weatherCall = () => {
     const data = null;
@@ -92,14 +75,15 @@ export default function NavBar() {
 
     xhr.addEventListener("readystatechange", function () {
       if (this.readyState === this.DONE) {
-        console.log(this.responseText);
+        setWeather(JSON.parse(this.responseText));
       }
+      
     });
 
-    xhr.open("GET", "https://api.climacell.co/v3/weather/realtime?lat=47.6062&lon=122.3321&unit_system=us&fields=precipitation%2Ctemp&apikey=wN4M0LPmrrziv0gjarHmdX1kNUgV8VKB");
+    xhr.open("GET", "https://api.climacell.co/v3/weather/realtime?lat=47.6062&lon=122.3321&unit_system=us&fields=precipitation%2Ctemp&apikey=" + process.env.REACT_APP_API_KEY);
 
     xhr.send(data);
-    console.log(data)
+
 
   }
 
@@ -108,6 +92,12 @@ export default function NavBar() {
   }, [])
 
 
+  // {"lat":47.6062,"lon":122.3321,"temp":{"value":46.29,"units":"F"},"precipitation":{"value":0,"units":"in/hr"},"observation_time":{"value":"2020-09-22T22:58:00.048Z"}}
+  if (typeof weather === "object") {
+    weatherMapped = <p>Temp: {weather.temp.value} F°</p>
+    date = Date.parse(weather.observation_time.value)
+  }
+  
   return(
     <AppBar position="static" className={classes.appBarRoot}>
       <Toolbar>
@@ -151,6 +141,8 @@ export default function NavBar() {
         </IconButton>
         <Typography variant="h6" className={classes.title}>
         <Link to='/' className="links home">The Tea</Link>
+        {weatherMapped}
+        {/* <button onClick={printWeather}>hey</button> */}
         </Typography>
       </Toolbar>
     </AppBar>
