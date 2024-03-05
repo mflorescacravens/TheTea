@@ -12,7 +12,6 @@ export default function App() {
   const [test, setTest] = useState('hi')
 
   function setValue(newValue) {
-    console.log(newValue)
     setTest(newValue)
   }
 
